@@ -38,7 +38,7 @@
         <property name="configLocation" value="classpath:mybatis-config.xml" />
         
         <!-- 4. resource에 mappers 디렉토리를 만들고 추가하기 mybatis dqm -->
-        <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml" />
+        <!-- <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml" /> -->
 	</bean>	
 	
     <!-- 6. @repository 에서 의존성 주입을 위한 설정 -->
