@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	<!-- hikariCP dataBase configuration -->
+	
+	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+	<!-- 
+		<property name="driverClassName"  value="com.mysql.cj.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/spring_study?useSSL=false&amp;serverTimezone=UTC"></property>
+		 -->
+		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
+		<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://localhost:3306/spring_study?useSSL=false&amp;serverTimezone=UTC"></property>
+		<property name="username" value="springStudy"></property>
+		<property name="password" value="won1228"></property>
+	</bean>
+	
+	<!-- HikariCP Configuration -->
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
+		<constructor-arg  ref="hikariConfig"/>
+	</bean>
+	<!-- tx setting -->
+	<tx:annotation-driven/>
+	<!-- Mybatis Configuration -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+        <!-- 3. resource에 mybatis-config.xml 만들고 추가하기 -->
+        <property name="configLocation" value="classpath:mybatis-config.xml" />
+        
+        <!-- 4. resource에 mappers 디렉토리를 만들고 추가하기 mybatis dqm -->
+        <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml" />
+	</bean>	
+	
+    <!-- 6. @repository 에서 의존성 주입을 위한 설정 -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
+		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>
+	</bean>	
+	<!-- @Aspect , @Before , @After -->
+	<aop:aspectj-autoproxy />
+	<context:component-scan base-package="kr.co.protfolio.**"></context:component-scan>
+</beans>
