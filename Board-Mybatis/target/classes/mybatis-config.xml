@@ -4,7 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
-		<!-- <typeAlias type="com.spring.acorn.user.model.vo.UserVO" alias="user"/> -->
+		<!-- userVO make alias -->
+		<typeAlias type="kr.co.portfolio.vo.UserVO" alias="userVO"/>
 	</typeAliases>
 	
 </configuration>

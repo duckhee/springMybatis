@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- session dao id -->  
+<mapper namespace="kr.co.portfolio.mapper.user">
+	<!-- User Create -->
+	<insert id="craeteUser">
+	</insert>
+	<!-- User List -->
+	<select id="userList" resultType="userVO">
+		<![CDATA[
+			SELECT * FROM tbl_members WHERE Idx > 0
+		]]>
+	</select>
+	<!-- test time -->
+ 	<select id="time" resultType="string">
+ 		SELECT NOW()
+ 	</select>
+</mapper>

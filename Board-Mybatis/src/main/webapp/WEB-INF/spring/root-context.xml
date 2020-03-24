@@ -20,8 +20,8 @@
 		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/spring_study?useSSL=false&amp;serverTimezone=UTC"></property>
 		 -->
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-		<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://localhost:3306/spring_study?useSSL=false&amp;serverTimezone=UTC"></property>
-		<property name="username" value="springStudy"></property>
+		<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://localhost:3306/portfolio_development?useSSL=false&amp;serverTimezone=UTC"></property>
+		<property name="username" value="portfolio"></property>
 		<property name="password" value="won1228"></property>
 	</bean>
 	
@@ -38,7 +38,7 @@
         <property name="configLocation" value="classpath:mybatis-config.xml" />
         
         <!-- 4. resource에 mappers 디렉토리를 만들고 추가하기 mybatis dqm -->
-        <!-- <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml" /> -->
+        <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml" /> 
 	</bean>	
 	
     <!-- 6. @repository 에서 의존성 주입을 위한 설정 -->
@@ -47,5 +47,5 @@
 	</bean>	
 	<!-- @Aspect , @Before , @After -->
 	<aop:aspectj-autoproxy />
-	<context:component-scan base-package="kr.co.protfolio.**"></context:component-scan>
+	<context:component-scan base-package="kr.co.portfolio.**"></context:component-scan>
 </beans>
