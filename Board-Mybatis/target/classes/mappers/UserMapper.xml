@@ -2,19 +2,64 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <!-- 
+  Create User Table 
+  	CREATE TABLE tbl_users (
+  		id BIGINT(10) PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  		UserEmail VARCHAR(255) UNIQUE NOT NULL,
+  		UserName VARCHAR(255) NOT NULL, 
+  		UserPassword VARCHAR(255) NOT NULL,
+  		createdAt DATETIME default NOW(),
+  		updatedAt DATETIME default NOW()
+  -->
 <!-- session dao id -->  
 <mapper namespace="kr.co.portfolio.mapper.user">
 	<!-- User Create -->
-	<insert id="craeteUser">
+	<insert id="createUser">
+		INSERT INTO (UserEmail, UserName, UserPassword) 
+		VALUES (
+			#{UserEmail},
+			#{UserName},
+			#{UserPassword}
+		)
 	</insert>
+	<!-- User Signup -->
+	<insert id="signup">
+		INSERT INTO (UserEmail, UserName, UserPassword) 
+		VALUES (
+			#{UserEmail},
+			#{UserName},
+			#{UserPassword}
+		)
+	</insert>
+	<!-- User Profile -->
+	<select id="userProfile" parameterType="userVO">
+		<![CDATA[
+			SELECT 
+			UserEmail, UserName, createdAt, updatedAt 
+			FROM tbl_members 
+			WHERE Idx = #{Idx}
+		]]>
+	</select>
 	<!-- User List -->
 	<select id="userList" resultType="userVO">
 		<![CDATA[
 			SELECT * FROM tbl_members WHERE Idx > 0
 		]]>
 	</select>
-	<!-- test time -->
- 	<select id="time" resultType="string">
- 		SELECT NOW()
- 	</select>
+	<!-- User Modify -->
+	<update id="userModify" parameterType="userVO">
+		UPDATE tbl_members  
+		SET 
+		UserEmail = #{UserEmail}, 
+		UserName = #{UserName}, 
+		UserPassword = #{UserPassword}, 
+		updatedAt = now() 
+		WHERE Idx = #{Idx}
+	</update>
+	<!-- User Delete -->
+	<delete id="userDelete" parameterType="userVO">
+		DELETE FROM tbl_members 
+		WHERE Idx=#{Idx}
+	</delete>
 </mapper>

@@ -7,7 +7,7 @@ import kr.co.portfolio.vo.UserVO;
 public interface UserDao {
 
 	/** Create User */
-	public boolean create(UserVO user);
+	public boolean signup(UserVO user);
 	/** List User */
 	public List<UserVO> list();
 	/** Check Email */
@@ -15,7 +15,7 @@ public interface UserDao {
 	/** delete User */
 	public boolean delete(UserVO user);
 	/** find User */
-	public UserVO find(UserVO user);
+	public UserVO profile(UserVO user);
 	/** modify user */
 	public boolean update(UserVO user);
 	

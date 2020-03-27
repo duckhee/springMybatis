@@ -6,6 +6,12 @@
 	<typeAliases>
 		<!-- userVO make alias -->
 		<typeAlias type="kr.co.portfolio.vo.UserVO" alias="userVO"/>
+		<!-- userRoleVO make alias -->
+		<typeAlias type="kr.co.portfolio.vo.UserRoleVO" alias="userRoleVO"/>
+		<!-- BoardVO make alias -->
+		<typeAlias type="kr.co.portfolio.vo.BoardVO" alias="boardVO"/>
+		<!-- BoardReplyVO make alias -->
+		<typeAlias type="kr.co.portfolio.vo.BoardReplyVO" alias="boardReplyVO"/>
 	</typeAliases>
 	
 </configuration>

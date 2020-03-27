@@ -29,8 +29,14 @@
 	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource" destroy-method="close">
 		<constructor-arg  ref="hikariConfig"/>
 	</bean>
+	
+	<!-- transaction Config -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
 	<!-- tx setting -->
 	<tx:annotation-driven/>
+	
 	<!-- Mybatis Configuration -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />

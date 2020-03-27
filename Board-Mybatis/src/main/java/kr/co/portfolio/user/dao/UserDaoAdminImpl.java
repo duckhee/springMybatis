@@ -17,11 +17,11 @@ public class UserDaoAdminImpl implements UserDao{
 	private SqlSession session;
 
 	@Override
-	public boolean create(UserVO user) {
+	public boolean signup(UserVO user) {
 		// TODO Auto-generated method stub
 		log.info("Create User");
-		//return false;
-		return session.insert("craeteUser", user) == 1;
+		return false;
+		//return session.insert("craeteUser", user) == 1;
 	}
 
 	@Override
@@ -46,7 +46,7 @@ public class UserDaoAdminImpl implements UserDao{
 	}
 
 	@Override
-	public UserVO find(UserVO user) {
+	public UserVO profile(UserVO user) {
 		// TODO Auto-generated method stub
 		log.info("Find User");
 		return null;

@@ -3,9 +3,14 @@ package kr.co.portfolio.vo;
 import java.sql.Date;
 import java.util.List;
 
-import lombok.Data;
 
-@Data
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString(exclude="roles")
 public class UserVO {
 	
 	//private Long id;
@@ -18,6 +23,6 @@ public class UserVO {
 	private String UserPassword;
 	private Date createdAt;
 	private Date updatedAt;
-	
-	//private List<UserRoleVO> roles;
+	/** Join User Roles */
+	private List<UserRoleVO> roles;
 }

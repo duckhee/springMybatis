@@ -14,13 +14,14 @@ import lombok.extern.log4j.Log4j;
 public class UserDaoImpl implements UserDao{
 	
 	@Autowired
-	private SqlSession sessoin;
+	private SqlSession session;
 
 	@Override
-	public boolean create(UserVO user) {
+	public boolean signup(UserVO user) {
 		// TODO Auto-generated method stub
 		log.info("Create User");
-		return false;
+		//return false;
+		return session.insert("createUser", user) == 1 ;
 	}
 
 	@Override
@@ -45,7 +46,7 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public UserVO find(UserVO user) {
+	public UserVO profile(UserVO user) {
 		// TODO Auto-generated method stub
 		log.info("Find User");
 		return null;

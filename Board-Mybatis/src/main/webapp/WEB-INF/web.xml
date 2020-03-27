@@ -25,8 +25,8 @@
 		<load-on-startup>1</load-on-startup>
 		<!-- file upload setting -->
 		<multipart-config>
-			<!-- <location>~/Desktop/temp</location> -->
-			<!-- <location>/Users/duckheewon/Desktop/temp/</location> -->
+			<!-- temporary file save location -->
+			<location>/Users/duckheewon/Desktop/temp/</location>
 			<max-file-size>20971520</max-file-size><!-- 1MB * 20 -->
 			<max-request-size>41943040</max-request-size><!-- 40MB -->
 			<file-size-threshold>20971520</file-size-threshold><!-- 20MB -->
@@ -51,5 +51,20 @@
     	<filter-name>encodingFilter</filter-name>
    		<url-pattern>/* </url-pattern>
   	</filter-mapping>
-  	
+  	<!-- Error Page -->
+  	<!-- 404 Not Found Error -->
+  	<error-page>
+  		<error-code>404</error-code>
+  		<location>/WEB-INF/views/error/404.jsp</location>
+  	</error-page>
+  	<!-- 403 Access Error -->
+  	<error-page>
+  		<error-code>403</error-code>
+  		<location>/WEB-INF/views/error/403.jsp</location>
+  	</error-page>
+  	<!-- 500 Server Error -->
+  	<error-page>
+  		<error-code>500</error-code>
+  		<location>/WEB-INF/views/error/500.jsp</location>
+  	</error-page>
 </web-app>
