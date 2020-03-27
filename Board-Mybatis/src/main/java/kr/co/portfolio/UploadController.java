@@ -30,14 +30,27 @@ public class UploadController {
 	private String RootPath = "";
 
 	@GetMapping(value="/upload")
-	public String UploadForm() {
+	public String UploadForm(MultipartFile[] uploadFile) {
+		
 		return "";
 	}
 	
 	@PostMapping(value="/upload")
 	public String UploadDo(MultipartFile uploadFile) {
-		/** Make Random Name */
-		UUID uuid = UUID.randomUUID();
+		/** Folder if not exist Make Folder */
+		File folder = makeFolder(RootPath);		
+		/** not have folder make Folders */
+		if(folder.exists() == false) {
+			folder.mkdirs();
+		}
+		String uploadNames = makeSaveFileName(uploadFile.getOriginalFilename());
+		try {
+			File saveFiles = new File(folder, uploadNames);
+			uploadFile.transferTo(saveFiles);
+		}catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
 		return "";
 	}
 	
@@ -58,7 +71,21 @@ public class UploadController {
 		return new ResponseEntity<Resource>(resource, header, HttpStatus.OK);
 	}
 	
+	/** Make File Name */
+	private String makeSaveFileName(String fileName) {
+		String saveFileName = "";
+		UUID saveName = UUID.randomUUID();
+		saveFileName = saveName + "_" + fileName;
+		return saveFileName;
+	}
+	
 	/** Make Save Folder */
+	private File makeFolder(String path) {
+		File folder = new File(RootPath + File.separator + path, getFolder());
+		return folder;
+	}
+	
+	/** Make Save Folder path */
 	private String getFolder() {
 		SimpleDateFormat dateFolder = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();

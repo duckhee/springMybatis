@@ -3,6 +3,7 @@ package kr.co.portfolio.admin.controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.portfolio.user.service.UserService;
 import lombok.extern.log4j.Log4j;
@@ -22,22 +23,23 @@ public class AdminUserController {
 	@GetMapping(value= {"","/"})
 	public String MainPage() {
 		log.info("Main User Page");
-		return "";
+		return "redirect:/admin/users/profile";
 	}
 	
-	@GetMapping(value="/signUp")
+	@GetMapping(value="/signup")
 	public String SignUpPage() {
-		return "";
+		log.info("registe user page");
+		return "admin/user/signUpPage";
 	}
 	
-	@PostMapping(value="/signUp")
-	public String SignUpDo() {
+	@PostMapping(value="/signup")
+	public String SignUpDo(RedirectAttributes flash) {
 		return "";
 	}
 	
 	@GetMapping(value="/login")
 	public String LoginPage() {
-		return "";
+		return "admin/user/loginPage";
 	}
 	
 	@PostMapping(value="/login")
@@ -52,7 +54,8 @@ public class AdminUserController {
 	
 	@GetMapping(value="/profile")
 	public String ProfilePage() {
-		return "";
+		log.info("Admin Profile");
+		return "admin/user/profilePage";
 	}
 	
 	@GetMapping(value="/modify")
