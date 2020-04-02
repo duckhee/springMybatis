@@ -4,6 +4,8 @@
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
 	<typeAliases>
+		<!-- Criteria make alias -->
+		<typeAlias type="kr.co.portfolio.vo.Criteria" alias="cri"/>
 		<!-- userVO make alias -->
 		<typeAlias type="kr.co.portfolio.vo.UserVO" alias="userVO"/>
 		<!-- userRoleVO make alias -->

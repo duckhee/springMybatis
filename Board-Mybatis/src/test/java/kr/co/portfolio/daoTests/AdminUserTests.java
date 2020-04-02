@@ -9,6 +9,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import kr.co.portfolio.user.dao.UserDao;
+import kr.co.portfolio.vo.UserVO;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -28,9 +29,17 @@ public class AdminUserTests {
 	@Test
 	public void ListTests() {
 		log.info("Admin User List Tests");
-		dao.list().forEach(user->{
+		dao.paging(null).forEach(user->{
 			log.info(user);
 		});
+	}
+	
+	@Test
+	public void LoginTests() {
+		log.info("Admin User Login Tests");
+		String email = "admin@co.kr";
+		UserVO user = dao.login(email);
+		log.info("login User:" + user);
 	}
 	
 }

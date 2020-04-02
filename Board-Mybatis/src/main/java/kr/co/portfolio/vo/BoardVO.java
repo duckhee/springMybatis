@@ -1,6 +1,7 @@
 package kr.co.portfolio.vo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 import lombok.Getter;
@@ -33,13 +34,22 @@ ENGINE = InnoDB;
 @Setter
 @ToString(exclude="replies")
 public class BoardVO {
-
+	/*
 	private Long Idx;
 	private String title;
 	private String content;
 	private String writer;
 	private Date createdAt;
 	private Date updatedAt;
+	*/
 	/** Join Data */
-	private List<BoardReplyVO> replies;
+	//private List<BoardReplyVO> replies;
+	
+	private Long idx;
+	private String title;
+	private String content;
+	private String writer;
+	private Timestamp createdAt;
+	private Timestamp updatedAt;
+	
 }

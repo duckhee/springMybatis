@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.portfolio.vo.Criteria;
 import kr.co.portfolio.vo.UserVO;
 import lombok.extern.log4j.Log4j;
 
@@ -25,7 +26,7 @@ public class UserDaoImpl implements UserDao{
 	}
 
 	@Override
-	public List<UserVO> list() {
+	public List<UserVO> paging(Criteria cri) {
 		// TODO Auto-generated method stub
 		log.info("List User");
 		return null;
@@ -57,6 +58,18 @@ public class UserDaoImpl implements UserDao{
 		// TODO Auto-generated method stub
 		log.info("Update User");
 		return false;
+	}
+
+	@Override
+	public int count(Criteria cri) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public UserVO login(String email) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

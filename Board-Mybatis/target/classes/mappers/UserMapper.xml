@@ -14,56 +14,126 @@
   -->
 <!-- session dao id -->  
 <mapper namespace="kr.co.portfolio.mapper.user">
-	<!-- User Create -->
-	<insert id="createUser">
-		
-		INSERT INTO (UserEmail, UserName, UserPassword) 
+
+	<!-- Create User -->
+	<insert id="signupUser" parameterType="userVO">
+		INSERT INTO 
+		cloud_user_table (
+			email,
+			password,
+			name
+		) 
 		VALUES (
-			#{UserEmail},
-			#{UserName},
-			#{UserPassword}
+			#{email},
+			#{password},
+			#{name}
+		 )
+	</insert>
+	<!-- Check User -->
+	<select id="checkUser" parameterType="string" resultType="userVO">
+	</select>
+	<!-- Create User use selectKey  -->
+	<insert id="insertUser" parameterType="userVO">
+		<!-- Insert Before Get IDX -->
+		<selectKey keyProperty="idx" order="BEFORE" resultType="int">
+			SELECT MAX(idx) + 1 FROM cloud_user_table
+		</selectKey>
+		INSERT INTO 
+		cloud_user_table (
+			idx,
+			email,
+			password,
+			name
+		) VALUES(
+			#{idx},
+			#{email},
+			#{password},
+			#{name}
 		)
 	</insert>
-	<!-- User Signup -->
-	<insert id="signup">
-		INSERT INTO (UserEmail, UserName, UserPassword) 
-		VALUES (
-			#{UserEmail},
-			#{UserName},
-			#{UserPassword}
-		)
-	</insert>
-	<!-- User Profile -->
-	<select id="userProfile" parameterType="userVO">
+	
+	<!-- Count User -->
+	<select id="countUser" parameterType="cri" resultType="int">
+		<![CDATA[
+		SELECT count(*) FROM cloud_user_table WHERE idx > 0
+		]]>
+	</select>
+	
+	<!-- Paging User -->
+	<select id="pagingUser" parameterType="cri" resultType="userVO">	
+		<![CDATA[
+		SELECT * FROM cloud_user_table 
+		WHERE idx > 0 
+		LIMIT #{amount} offset #{offset}
+		]]> 
+	</select>
+	
+	<!-- SQL Search -->
+	<sql id="criteriaUser">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							
+						</when>
+						<when test="type == 'R'.toString()">
+						
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<!-- Modify User -->
+	<update id="modifyUser" parameterType="userVO">
+		UPDATE cloud_user_table 
+		SET email=#{email}, password=#{password}, name=#{name}, updatedAt=NOW() 
+		WHERE idx=#{idx}
+	</update>
+	
+	<!-- Profile User -->
+	<select id="profileUser" parameterType="userVO">
+		SELECT email, name, createdAt, updatedAt  
+		FROM cloud_user_table  
+		WHERE email=#{email}
+	</select>
+	<!-- Login User ResultMap(USER) -->
+	<resultMap type="userVO" id="loginUserMap">
+		<id property="idx" column="uidx"/>
+		<result property="email" column="uemail"/>
+		<result property="name" column="uname"/>
+		<result property="password" column="upassword"/>
+		<result property="createdAt" column="ucreatedAt"/>
+		<result property="updatedAt" column="uupdatedAt"/>
+		<collection property="roles" resultMap="loginRoleMap"/>
+	</resultMap>
+	<!-- Login User ResultMap(ROLE) -->
+	<resultMap type="userRoleVO" id="loginUserRoleMap">
+		<id property="idx" column="ridx"/>
+		<result property="role" column="rrole"/>
+		<result property="createdAt" column="rcreatedAt"/>
+		<result property="updatedAt" column="rupdatedAt"/>
+	</resultMap>
+	<!-- Login User -->
+	<select id="loginUser" parameterType="string" resultType="userVO">
 		<![CDATA[
 			SELECT 
-			UserEmail, UserName, createdAt, updatedAt 
-			FROM tbl_members 
-			WHERE Idx = #{Idx}
+			u.idx as uidx, u.email as uemail, u.password as upassword, 
+			u.name as uname, u.createdAt as ucreatedAt, u.updatedAt as uupdatedAt,
+			r.idx as ridx, r.role as rrole, r.createdAt as rcreatedAt, r.updatedAt as rupdatedAt 
+			FROM cloud_user_table as u LEFT OUTER JOIN cloud_user_role_table as r 
+			ON  u.idx=r.user_table_idx 
+			WHERE u.email=#{email} AND u.idx > 0 
 		]]>
 	</select>
-	<!-- Member Paging -->
-	
-	<!-- User List -->
-	<select id="userList" resultType="userVO">
-		<![CDATA[
-			SELECT * FROM tbl_members WHERE Idx > 0
-		]]>
-	</select>
-	<!-- User Modify -->
-	<update id="userModify" parameterType="userVO">
-		UPDATE tbl_members  
-		SET 
-		UserEmail = #{UserEmail}, 
-		UserName = #{UserName}, 
-		UserPassword = #{UserPassword}, 
-		updatedAt = now() 
-		WHERE Idx = #{Idx}
-	</update>
-	<!-- User Delete -->
-	<delete id="userDelete" parameterType="userVO">
-		DELETE FROM tbl_members 
-		WHERE Idx=#{Idx}
+
+	<!-- Delete User -->
+	<delete id="deleteUser" parameterType="userVO">
+		DELETE FROM cloud_user_table 
+		WHERE idx = #{idx}
 	</delete>
+	
 	<!-- User Get Roles -->
 </mapper>

@@ -22,8 +22,8 @@
 		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/spring_study?useSSL=false&amp;serverTimezone=UTC"></property>
 		 -->
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy"></property>
-		<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://localhost:3306/portfolio_development?useSSL=false&amp;serverTimezone=UTC"></property>
-		<property name="username" value="portfolio"></property>
+		<property name="jdbcUrl" value="jdbc:log4jdbc:mysql://localhost:3306/mybatis_ex?useSSL=false&amp;serverTimezone=UTC"></property>
+		<property name="username" value="mybatis"></property>
 		<property name="password" value="won1228"></property>
 	</bean>
 	

@@ -7,11 +7,15 @@
 
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	<!-- Admin Configuration -->
+	<!-- 
 	<security:http pattern="/admin/**" auto-config="true">
 	
 	</security:http>
+	 -->
 	<!-- User Configuration -->
+	<!-- 
 	<security:http pattern="/**" auto-config="true">
 	
 	</security:http>
+	 -->
 </beans>

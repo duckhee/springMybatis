@@ -1,6 +1,7 @@
 package kr.co.portfolio.vo;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -33,10 +34,20 @@ ENGINE = InnoDB;
 @Setter
 @ToString
 public class BoardReplyVO {
-
+	
+	/*
 	private Long Idx;
 	private String rewriter;
 	private String recontent;
 	private Date createdAt;
 	private Date updatedAt;
+	*/
+	
+	private Long idx;
+	private String retitle;
+	private String recotent;
+	private String replyer;
+	private Timestamp createdAt;
+	private Timestamp updatedAt;
+	
 }

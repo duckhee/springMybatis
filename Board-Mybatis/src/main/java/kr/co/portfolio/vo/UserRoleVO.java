@@ -34,9 +34,8 @@ ENGINE = InnoDB;
 @ToString
 public class UserRoleVO {
 
-	private Long id;
+	private Long idx;
 	private String role;
-	
 	private Date createdAt;
 	private Date udpatedAt;
 	

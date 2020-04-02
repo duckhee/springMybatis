@@ -23,7 +23,7 @@ import lombok.extern.log4j.Log4j;
 
 @Log4j
 @Controller
-@RequestMapping(value="/upload")
+@RequestMapping(value="/upload/*")
 public class UploadController {
 	
 	/** Upload FIle Path */

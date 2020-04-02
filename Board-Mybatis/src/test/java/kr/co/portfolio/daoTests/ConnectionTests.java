@@ -41,7 +41,7 @@ public class ConnectionTests {
 	
 	@Test
 	public void JDBCTests() {
-		try(Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/spring_study?useSSL=false&serverTimezone=UTC", "root","won1228A!")){
+		try(Connection con = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/mybatis_ex?useSSL=false&serverTimezone=UTC", "mybatis","won1228")){
 			log.info("get Connection : " + con);
 		}catch (Exception e) {
 			// TODO: handle exception
