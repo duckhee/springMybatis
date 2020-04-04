@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import kr.co.portfolio.board.dao.BoardDao;
 import kr.co.portfolio.vo.BoardReplyVO;
 import kr.co.portfolio.vo.BoardVO;
+import kr.co.portfolio.vo.Criteria;
 
 @Service(value="AdminBoardService")
 public class BoardServiceAdminImpl implements BoardService{
@@ -35,7 +36,13 @@ public class BoardServiceAdminImpl implements BoardService{
 	}
 
 	@Override
-	public List<BoardVO> paging() {
+	public int count(Criteria cri) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<BoardVO> paging(Criteria cri){
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -75,5 +82,6 @@ public class BoardServiceAdminImpl implements BoardService{
 		// TODO Auto-generated method stub
 		return false;
 	}
+
 
 }

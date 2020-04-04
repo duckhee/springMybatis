@@ -18,9 +18,7 @@ public class CustomUserDetailService implements UserDetailsService{
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		UserVO user = dao.login(username);
-		user.getRoles().forEach(role->{
-			System.out.println("ROLE is : " + role.toString());
-		});
+		/** Return Security User */
 		return user == null ? null : new CustomUser(user);
 	}
 

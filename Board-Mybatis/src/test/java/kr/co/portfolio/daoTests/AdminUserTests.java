@@ -38,10 +38,10 @@ public class AdminUserTests {
 	public void SignUpTest() {
 		log.info("Sign Up Tests");
 		UserVO user = new UserVO();
-		user.setEmail("admindcdxxdccadcscccc5ddc@co.kr");
+		user.setEmail("tetcccs@co.kr");
 		user.setPassword("admin1");
 		user.setName("admin1");
-		log.info("getBoard"+dao.signup(user));
+		log.info("getBoard : "+dao.signup(user));
 		
 	}
 	

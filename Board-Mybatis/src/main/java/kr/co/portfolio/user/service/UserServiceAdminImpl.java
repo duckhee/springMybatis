@@ -20,7 +20,7 @@ public class UserServiceAdminImpl implements UserService{
 	/**TODO check Logic */
 	@Override
 	@Transactional
-	public boolean signup(UserVO user) {
+	public boolean signup(UserVO user){
 		// TODO Auto-generated method stub
 		log.info("Admin Service SignUp");
 		/** Insert User */

@@ -16,7 +16,7 @@
 <mapper namespace="kr.co.portfolio.mapper.user">
 	<!-- Create User Role -->
 	<insert id="roleCreate" parameterType="userRoleVO">
-		INSERT INTO cloud_user_role_table (
+		INSERT INTO user_role_table (
 			role, 
 			user_table_idx
 		) 
@@ -28,7 +28,7 @@
 	<!-- Create User -->
 	<insert id="signupUser" useGeneratedKeys="true" keyProperty="idx"  parameterType="userVO">
 		INSERT INTO 
-		cloud_user_table (
+		user_table (
 			email,
 			password,
 			name
@@ -41,15 +41,19 @@
 	</insert>
 	<!-- Check User -->
 	<select id="checkUser" parameterType="string" resultType="userVO">
+		<![CDATA[
+			SELECT * FROM user_table  
+			WHERE email=#{email} AND idx > 0
+		]]>
 	</select>
 	<!-- Create User use selectKey  -->
 	<insert id="insertUser" parameterType="userVO">
 		<!-- Insert Before Get IDX -->
 		<selectKey keyProperty="idx" order="BEFORE" resultType="int">
-			SELECT MAX(idx) + 1 FROM cloud_user_table
+			SELECT MAX(idx) + 1 FROM user_table
 		</selectKey>
 		INSERT INTO 
-		cloud_user_table (
+		user_table (
 			idx,
 			email,
 			password,
@@ -65,7 +69,7 @@
 	<!-- Count User -->
 	<select id="countUser" parameterType="cri" resultType="int">
 		<![CDATA[
-		SELECT count(*) FROM cloud_user_table WHERE idx > 0
+		SELECT count(*) FROM user_table WHERE idx > 0
 		]]>
 	</select>
 	<!-- Search User SQL -->
@@ -89,7 +93,7 @@
 	<!-- Paging User -->
 	<select id="pagingUser" parameterType="cri" resultType="userVO">	
 		<![CDATA[
-		SELECT * FROM cloud_user_table 
+		SELECT * FROM user_table  
 		WHERE idx > 0 
 		LIMIT #{amount} offset #{offset}
 		]]> 
@@ -98,9 +102,17 @@
 	<!-- Modify User -->
 	<update id="modifyUser" parameterType="userVO">
 		<![CDATA[
-			UPDATE cloud_user_table 
+			UPDATE user_table  
 			SET email=#{email}, password=#{password}, name=#{name}, updatedAt=NOW() 
 			WHERE idx=#{idx}
+		]]>
+	</update>
+	<!-- Modify User Role -->
+	<update id="modifyUserRole" parameterType="userRoleVO">
+		<![CDATA[
+			UPDATE user_role_table 
+			SET role=#{role}, updatedAt=NOW() 
+			WHERE user_table_idx = #{user_table_idx}
 		]]>
 	</update>
 	
@@ -111,22 +123,6 @@
 		WHERE email=#{email}
 	</select>
 	
-	<!-- Count User -->
-	<select id="countUser" parameterType="cri" resultType="int">
-		<![CDATA[
-			SELECT cont(*) FROM user_table 
-			WEHRE idx > 0
-		]]>
-	</select>
-	
-	<!-- Paging User -->
-	<select id="pagingUser" parameterType="cri" resultType="userVO">
-		<![CDATA[
-			SELECT * FROM user_table  
-			WHERE idx > 0 
-			limit #{amount} offset #{offset}
-		]]>
-	</select>
 	<!-- Login User ResultMap(USER) -->
 	<resultMap type="userVO" id="loginUserMap">
 		<id property="idx" column="uidx"/>
