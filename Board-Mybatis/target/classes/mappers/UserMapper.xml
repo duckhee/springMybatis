@@ -14,9 +14,19 @@
   -->
 <!-- session dao id -->  
 <mapper namespace="kr.co.portfolio.mapper.user">
-
+	<!-- Create User Role -->
+	<insert id="roleCreate" parameterType="userRoleVO">
+		INSERT INTO cloud_user_role_table (
+			role, 
+			user_table_idx
+		) 
+		VALUES(
+			#{role},
+			#{user_table_idx}
+		)
+	</insert>
 	<!-- Create User -->
-	<insert id="signupUser" parameterType="userVO">
+	<insert id="signupUser" useGeneratedKeys="true" keyProperty="idx"  parameterType="userVO">
 		INSERT INTO 
 		cloud_user_table (
 			email,
@@ -58,18 +68,8 @@
 		SELECT count(*) FROM cloud_user_table WHERE idx > 0
 		]]>
 	</select>
-	
-	<!-- Paging User -->
-	<select id="pagingUser" parameterType="cri" resultType="userVO">	
-		<![CDATA[
-		SELECT * FROM cloud_user_table 
-		WHERE idx > 0 
-		LIMIT #{amount} offset #{offset}
-		]]> 
-	</select>
-	
-	<!-- SQL Search -->
-	<sql id="criteriaUser">
+	<!-- Search User SQL -->
+	<sql id="searchUser">
 		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
 			<foreach item="type" collection="typeArr">
 				<trim prefix="OR">
@@ -85,12 +85,23 @@
 			</foreach>
 		</trim>
 	</sql>
-
+	
+	<!-- Paging User -->
+	<select id="pagingUser" parameterType="cri" resultType="userVO">	
+		<![CDATA[
+		SELECT * FROM cloud_user_table 
+		WHERE idx > 0 
+		LIMIT #{amount} offset #{offset}
+		]]> 
+	</select>
+	
 	<!-- Modify User -->
 	<update id="modifyUser" parameterType="userVO">
-		UPDATE cloud_user_table 
-		SET email=#{email}, password=#{password}, name=#{name}, updatedAt=NOW() 
-		WHERE idx=#{idx}
+		<![CDATA[
+			UPDATE cloud_user_table 
+			SET email=#{email}, password=#{password}, name=#{name}, updatedAt=NOW() 
+			WHERE idx=#{idx}
+		]]>
 	</update>
 	
 	<!-- Profile User -->
@@ -98,6 +109,23 @@
 		SELECT email, name, createdAt, updatedAt  
 		FROM cloud_user_table  
 		WHERE email=#{email}
+	</select>
+	
+	<!-- Count User -->
+	<select id="countUser" parameterType="cri" resultType="int">
+		<![CDATA[
+			SELECT cont(*) FROM user_table 
+			WEHRE idx > 0
+		]]>
+	</select>
+	
+	<!-- Paging User -->
+	<select id="pagingUser" parameterType="cri" resultType="userVO">
+		<![CDATA[
+			SELECT * FROM user_table  
+			WHERE idx > 0 
+			limit #{amount} offset #{offset}
+		]]>
 	</select>
 	<!-- Login User ResultMap(USER) -->
 	<resultMap type="userVO" id="loginUserMap">
@@ -128,7 +156,8 @@
 			WHERE u.email=#{email} AND u.idx > 0 
 		]]>
 	</select>
-
+	<!-- Delete User List resultMap(LIST) -->
+	
 	<!-- Delete User -->
 	<delete id="deleteUser" parameterType="userVO">
 		DELETE FROM cloud_user_table 

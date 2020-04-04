@@ -35,6 +35,17 @@ public class AdminUserTests {
 	}
 	
 	@Test
+	public void SignUpTest() {
+		log.info("Sign Up Tests");
+		UserVO user = new UserVO();
+		user.setEmail("admindcdxxdccadcscccc5ddc@co.kr");
+		user.setPassword("admin1");
+		user.setName("admin1");
+		log.info("getBoard"+dao.signup(user));
+		
+	}
+	
+	@Test
 	public void LoginTests() {
 		log.info("Admin User Login Tests");
 		String email = "admin@co.kr";

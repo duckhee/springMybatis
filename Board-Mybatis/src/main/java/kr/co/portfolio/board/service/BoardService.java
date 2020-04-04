@@ -11,11 +11,11 @@ public interface BoardService {
 	/** Update Board */
 	public boolean modify(BoardVO board);
 	/** View Board */
-	public BoardVO view(BoardVO board);
+	public BoardVO view(Long board);
 	/** Paging Board */
 	public List<BoardVO> paging();
 	/** Delete Board */
-	public boolean delete(BoardVO board);
+	public boolean delete(List<Long> board);
 	
 	/** Create Reply */
 	public boolean createReply(BoardReplyVO reply);

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.portfolio.vo.Criteria;
+import kr.co.portfolio.vo.UserRoleVO;
 import kr.co.portfolio.vo.UserVO;
 import lombok.extern.log4j.Log4j;
 
@@ -18,11 +19,17 @@ public class UserDaoAdminImpl implements UserDao{
 	private SqlSession session;
 
 	@Override
-	public boolean signup(UserVO user) {
+	public UserVO signup(UserVO user) {
 		// TODO Auto-generated method stub
-		log.info("Create User");
+		//log.info("Create User" + session.insert("signupUser", user));
 		//return false;
-		return session.insert("signupUser", user) == 1;
+		//log.info("user"+user);
+		session.insert("signupUser", user);
+		log.info("user idx:" + user.getIdx());
+		if(user.getIdx() == null) {
+			return null;
+		}
+		return user;
 	}
 
 	@Override
@@ -70,6 +77,24 @@ public class UserDaoAdminImpl implements UserDao{
 	public UserVO login(String email) {
 		// TODO Auto-generated method stub
 		return session.selectOne("loginUser", email);
+	}
+
+	@Override
+	public boolean RoleSignup(UserRoleVO role) {
+		// TODO Auto-generated method stub
+		return session.insert("roleCreate", role) == 1;
+	}
+
+	@Override
+	public boolean RoleModify(UserRoleVO role) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean RoleDelete(UserRoleVO role) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 

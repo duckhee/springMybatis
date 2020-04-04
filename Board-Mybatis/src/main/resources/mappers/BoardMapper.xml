@@ -22,11 +22,70 @@ ENGINE = InnoDB;
 <mapper namespace="kr.co.portfolio.mapper.board">
 	<!-- Insert Board -->
 	<insert id="BoardInsert" parameterType="boardVO">
-		INSERT INTO tbl_boards () VALUES ()
+		<![CDATA[
+			INSERT INTO board_table (
+				title,
+				content,
+				writer
+			) 
+			VALUES (
+				#{title},
+				#{content},
+				#{writer}
+			)
+		]]>
 	</insert>
-	<!--  -->
+	<!-- Count Board -->
+	<select id="BoardCount" parameterType="cri" resultType="int">
+		<![CDATA[
+			SELECT count(*) FROM board_table 
+			WHERE idx > 0			
+		]]>
+	</select>
+	<!-- Paging Board -->
+	<select id="BoardPaging" parameterType="cri" resultType="boardVO">
+		<![CDATA[
+			SELECT * FROM board_table 
+			WHERE 
+			idx > 0 
+			limit #{amount} offset #{offset}
+		]]>
+	</select>
+	<!-- Search Board Option SQL -->
+	<!-- View Board -->
+	<select id="BoardView" parameterType="long" resultType="boardVO">
+		<![CDATA[
+			SELECT * FROM board_table 
+			WHERE idx = #{idx} AND idx > 0
+		]]>
+	</select>
+	<!-- Modify Board -->
+	<update id="ModifyBoard" parameterType="boardVO">
+		<![CDATA[
+			UPDATE board_table 
+			SET title=#{title}, content=#{content} 
+			WHERE idx=#{idx} AND idx > 0
+		]]>
+	</update>
+	<!-- Delete List Board Map(LIST) -->
+	<sql id="deleteBoards">
+		<trim prefix="(" suffix=")" prefixOverrides=",">
+			<foreach collection="list" item="bno">
+				<trim prefix=",">
+					${bno}
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
 	<!-- Delete Board -->
-	<delete id="BoardDelete" parameterType="boardVO">
-	
+	<delete id="BoardDelete" parameterType="list">
+		<![CDATA[
+			DELETE FROM board_table 
+			WHERE idx IN 
+		]]>
+		<include refid="deleteBoards"></include>
+		<![CDATA[
+			AND idx > 0
+		]]>
 	</delete>
 </mapper>

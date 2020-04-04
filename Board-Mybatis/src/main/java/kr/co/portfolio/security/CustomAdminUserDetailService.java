@@ -14,10 +14,16 @@ public class CustomAdminUserDetailService implements UserDetailsService{
 	@Resource(name="AdminUserDao")
 	private UserDao dao;
 	
+	/** Auto Decoding Password */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// TODO Auto-generated method stub
 		UserVO user = dao.login(username);
+		user.getRoles().forEach(roles->{
+			if(roles.toString() == "ROLE_ADMIN") {
+				System.out.println("Role is ADMIN");
+			}
+		});
 		//return null;
 		return user == null ? null : new CustomUser(user);
 	}

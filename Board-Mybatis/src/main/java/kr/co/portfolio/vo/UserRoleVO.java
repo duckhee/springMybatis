@@ -39,5 +39,6 @@ public class UserRoleVO {
 	private Date createdAt;
 	private Date udpatedAt;
 	
-	
+	/** User Idx */
+	private Long user_table_idx;
 }

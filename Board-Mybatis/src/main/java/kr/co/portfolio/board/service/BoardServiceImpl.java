@@ -2,13 +2,19 @@ package kr.co.portfolio.board.service;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 
+import kr.co.portfolio.board.dao.BoardDao;
 import kr.co.portfolio.vo.BoardReplyVO;
 import kr.co.portfolio.vo.BoardVO;
 
 @Service(value="BoardService")
 public class BoardServiceImpl implements BoardService{
+	
+	@Resource(name="BoardDao")
+	private BoardDao dao;
 
 	@Override
 	public boolean create(BoardVO board) {
@@ -23,7 +29,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public BoardVO view(BoardVO board) {
+	public BoardVO view(Long board) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -35,7 +41,7 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public boolean delete(BoardVO board) {
+	public boolean delete(List<Long> board) {
 		// TODO Auto-generated method stub
 		return false;
 	}

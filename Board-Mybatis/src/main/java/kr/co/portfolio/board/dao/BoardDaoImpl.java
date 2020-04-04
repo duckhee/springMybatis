@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.portfolio.vo.BoardReplyVO;
 import kr.co.portfolio.vo.BoardVO;
+import kr.co.portfolio.vo.Criteria;
 
 @Repository(value="BoardDao")
 public class BoardDaoImpl implements BoardDao{
@@ -17,7 +18,7 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 	@Override
-	public BoardVO view(BoardVO board) {
+	public BoardVO view(Long board) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -29,13 +30,21 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 	@Override
-	public boolean delete(BoardVO board) {
+	public boolean delete(List<Long> board, int count) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
+
 	@Override
-	public List<BoardVO> paging() {
+	public int count(Criteria cri) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+ 
+	
+	@Override
+	public List<BoardVO> paging(Criteria cri) {
 		// TODO Auto-generated method stub
 		return null;
 	}

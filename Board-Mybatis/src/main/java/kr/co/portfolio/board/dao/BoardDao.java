@@ -4,18 +4,21 @@ import java.util.List;
 
 import kr.co.portfolio.vo.BoardReplyVO;
 import kr.co.portfolio.vo.BoardVO;
+import kr.co.portfolio.vo.Criteria;
 
 public interface BoardDao {
 	/** Create Board */
 	public boolean create(BoardVO board);
 	/** View Board */
-	public BoardVO view(BoardVO board);
+	public BoardVO view(Long board);
+	/** Count Board */
+	public int count(Criteria cri);
 	/** Paging Board */
-	public List<BoardVO> paging();
+	public List<BoardVO> paging(Criteria cri);
 	/** Modify Board */
 	public boolean modify(BoardVO board);
 	/** Delete Board */
-	public boolean delete(BoardVO board);
+	public boolean delete(List<Long> board, int count);
 	
 	/** Create Reply */
 	public boolean createReply(BoardReplyVO reply);
