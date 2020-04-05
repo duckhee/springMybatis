@@ -23,13 +23,14 @@ public interface BoardDao {
 	/** Create Reply */
 	public boolean createReply(BoardReplyVO reply);
 	/** View Reply */
-	public BoardReplyVO viewReply(BoardReplyVO reply);
+	public BoardReplyVO viewReply(Long rno);
 	/** Count Reply */
-	public int countReply(Criteria cri);
+	public int countReply(Criteria cri, Long bno);
 	/** List Reply */
-	public List<BoardReplyVO> listReply(BoardReplyVO reply);
+	public List<BoardReplyVO> listReply(Criteria cri, Long bno);
 	/** Modify Reply */
 	public boolean modifyReply(BoardReplyVO reply);
 	/** Delete Reply */
+	/** Only Delete Board Owner, Admin, Replyer */
 	public boolean deleteReply(BoardReplyVO reply);
 }

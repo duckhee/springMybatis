@@ -61,13 +61,19 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 	@Override
-	public BoardReplyVO viewReply(BoardReplyVO reply) {
+	public BoardReplyVO viewReply(Long rno) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<BoardReplyVO> listReply(BoardReplyVO reply) {
+	public int countReply(Criteria cri, Long bno) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<BoardReplyVO> listReply(Criteria cri, Long bno) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -84,10 +90,5 @@ public class BoardDaoImpl implements BoardDao{
 		return false;
 	}
 
-	@Override
-	public int countReply(Criteria cri) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 }

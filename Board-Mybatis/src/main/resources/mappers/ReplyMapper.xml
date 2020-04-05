@@ -17,6 +17,7 @@
 			)
 		]]>
 	</insert>
+	<!-- TODO CHANGE -->
 	<!-- Count Reply -->
 	<select id="countBoardReply" parameterType="cri" resultType="int">
 		<![CDATA[
@@ -30,6 +31,30 @@
 			SELECT * FROM board_reply_table 
 			WHERE bno=#{bno} AND idx > 0  
 			limit #{amount} offset #{offset}
+		]]>
+	</select>
+	
+	<!-- Mapper Count Board Reply -->
+	<select id="getCountByBno" resultType="int">
+		<![CDATA[
+			SELECT count(*) FROM board_reply_table 
+			WHERE bno=#{bno}
+		]]>
+	</select>	
+	<!-- Mapper List Board Reply -->
+	<select id="getListWithPaging" resultType="boardReplyVO">
+		<![CDATA[
+			SELECT * FROM board_reply_table 
+			WHERE bno=#{bno} 
+			limit #{cri.amount} offset #{cri.offset}
+		]]>
+	</select>
+	
+	<!-- View Reply -->
+	<select id="viewBoardReply" resultType="boardReplyVO">
+		<![CDATA[
+			SELECT * FROM board_reply_table 
+			WHERE idx=#{idx}
 		]]>
 	</select>
 	<!-- Update Reply -->

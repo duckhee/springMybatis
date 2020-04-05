@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.portfolio.mapper.reply.ReplyMapper;
 import kr.co.portfolio.vo.BoardReplyVO;
 import kr.co.portfolio.vo.BoardVO;
 import kr.co.portfolio.vo.Criteria;
@@ -15,6 +16,9 @@ public class BoardDaoAdminImpl implements BoardDao{
 	
 	@Autowired
 	private SqlSession session;
+	
+	@Autowired
+	private ReplyMapper mapper;
 	
 	@Override
 	public boolean create(BoardVO board) {
@@ -52,42 +56,43 @@ public class BoardDaoAdminImpl implements BoardDao{
 		// TODO Auto-generated method stub
 		return session.selectList("BoardPaging", cri);
 	}
+	
+	/** Board Reply DAO */
 
 	@Override
 	public boolean createReply(BoardReplyVO reply) {
 		// TODO Auto-generated method stub
-		return session.insert("createBoardReply", reply) == 1;
+		return mapper.createBoardReply(reply) == 1;
 	}
 
 	@Override
-	public BoardReplyVO viewReply(BoardReplyVO reply) {
+	public BoardReplyVO viewReply(Long rno) {
 		// TODO Auto-generated method stub
-		return session.selectOne("", reply);
+		return mapper.viewBoardReply(rno);
 	}
 
 	@Override
-	public List<BoardReplyVO> listReply(BoardReplyVO reply) {
+	public int countReply(Criteria cri, Long bno) {
 		// TODO Auto-generated method stub
-		return null;
+		return mapper.getCountByBno(cri, bno);
+	}
+
+	@Override
+	public List<BoardReplyVO> listReply(Criteria cri, Long bno) {
+		// TODO Auto-generated method stub
+		return mapper.getListWithPaging(cri, bno);
 	}
 
 	@Override
 	public boolean modifyReply(BoardReplyVO reply) {
 		// TODO Auto-generated method stub
-		return false;
+		return mapper.updateBoardReply(reply) == 1;
 	}
 
 	@Override
 	public boolean deleteReply(BoardReplyVO reply) {
 		// TODO Auto-generated method stub
-		return false;
+		return mapper.deleteBoardReply(reply) == 1;
 	}
-
-	@Override
-	public int countReply(Criteria cri) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 
 }
