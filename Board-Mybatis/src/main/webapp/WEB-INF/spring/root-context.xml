@@ -48,7 +48,8 @@
         <!-- 4. resource에 mappers 디렉토리를 만들고 추가하기 mybatis dqm -->
         <property name="mapperLocations" value="classpath:mappers/**/*Mapper.xml" /> 
 	</bean>	
-	
+	<!-- Mapper Scan -->
+	<mybatis-spring:scan base-package="kr.co.portfolio.mapper.**"/>
     <!-- 6. @repository 에서 의존성 주입을 위한 설정 -->
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
 		<constructor-arg name="sqlSessionFactory" ref="sqlSessionFactory"></constructor-arg>

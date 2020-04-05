@@ -1,6 +1,6 @@
 package kr.co.portfolio.vo;
 
-import java.sql.Date;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -51,5 +51,7 @@ public class BoardVO {
 	private String writer;
 	private Timestamp createdAt;
 	private Timestamp updatedAt;
+	/** Replies Board */
+	private List<BoardReplyVO> replies;
 	
 }

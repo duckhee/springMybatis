@@ -17,6 +17,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="<c:url value='/resources/admin/dist/css/AdminLTE.min.css'/>">
+  <!-- sweetalert2 -->
+  <link rel='stylesheet' href='https://cdn.rawgit.com/t4t5/sweetalert/v0.2.0/lib/sweet-alert.css'>
   <!-- iCheck -->
   <link rel="stylesheet" href="<c:url value='/resources/admin/plugins/iCheck/square/blue.css'/>">
 
@@ -82,6 +84,8 @@
 <script src="<c:url value='/resources/admin/plugins/jQuery/jquery-2.2.3.min.js'/>"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="<c:url value='/resources/admin/bootstrap/js/bootstrap.min.js'/>"></script>
+<!-- sweetalert2 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
 <!-- iCheck -->
 <script src="<c:url value='/resources/admin/plugins/iCheck/icheck.min.js'/>"></script>
 <script>
@@ -91,6 +95,10 @@
       radioClass: 'iradio_square-blue',
       increaseArea: '20%' // optional
     });
+    /** Login Email Check */
+    
+    /** Login Password Check */
+    
   });
 </script>
 </body>

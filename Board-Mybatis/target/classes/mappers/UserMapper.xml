@@ -12,32 +12,33 @@
   		createdAt DATETIME default NOW(),
   		updatedAt DATETIME default NOW()
   -->
+  <!-- TODO Think idx -->
 <!-- session dao id -->  
 <mapper namespace="kr.co.portfolio.mapper.user">
-	<!-- Create User Role -->
-	<insert id="roleCreate" parameterType="userRoleVO">
-		INSERT INTO user_role_table (
-			role, 
-			user_table_idx
-		) 
-		VALUES(
-			#{role},
-			#{user_table_idx}
-		)
-	</insert>
+	
+	<!-- TODO Think idx -->
 	<!-- Create User -->
 	<insert id="signupUser" useGeneratedKeys="true" keyProperty="idx"  parameterType="userVO">
-		INSERT INTO 
-		user_table (
-			email,
-			password,
-			name
-		) 
-		VALUES (
-			#{email},
-			#{password},
-			#{name}
-		 )
+		<selectKey keyProperty="idx" order="BEFORE" resultType="long">
+			<![CDATA[
+				SELECT COALESCE(MAX(idx),0) + 1 FROM user_table
+			]]>
+		</selectKey>
+		<![CDATA[
+			INSERT INTO 
+			user_table (
+				idx,
+				email,
+				password,
+				name
+			) 
+			VALUES (
+				#{idx},
+				#{email},
+				#{password},
+				#{name}
+		 	)
+		 ]]>
 	</insert>
 	<!-- Check User -->
 	<select id="checkUser" parameterType="string" resultType="userVO">
@@ -49,8 +50,15 @@
 	<!-- Create User use selectKey  -->
 	<insert id="insertUser" parameterType="userVO">
 		<!-- Insert Before Get IDX -->
+		<!-- 
 		<selectKey keyProperty="idx" order="BEFORE" resultType="int">
 			SELECT MAX(idx) + 1 FROM user_table
+		</selectKey>
+		 -->
+		 <selectKey keyProperty="idx" order="BEFORE" resultType="long">
+			<![CDATA[
+				SELECT COALESCE(MAX(idx),0) + 1 FROM user_table
+			]]>
 		</selectKey>
 		INSERT INTO 
 		user_table (
@@ -156,8 +164,10 @@
 	
 	<!-- Delete User -->
 	<delete id="deleteUser" parameterType="userVO">
-		DELETE FROM cloud_user_table 
-		WHERE idx = #{idx}
+		<![CDATA[
+			DELETE FROM cloud_user_table 
+			WHERE idx = #{idx}
+		]]>
 	</delete>
 	
 	<!-- User Get Roles -->

@@ -13,7 +13,7 @@
 		<!-- BoardVO make alias -->
 		<typeAlias type="kr.co.portfolio.vo.BoardVO" alias="boardVO"/>
 		<!-- BoarFileVO make alias -->
-		<!-- <typeAlias type="kr.co.portfolio.vo.BoardFileVO" alias="boardFileVo"/> -->
+		<typeAlias type="kr.co.portfolio.vo.BoardFileVO" alias="boardFileVo"/>
 		<!-- BoardReplyVO make alias -->
 		<typeAlias type="kr.co.portfolio.vo.BoardReplyVO" alias="boardReplyVO"/>
 	</typeAliases>

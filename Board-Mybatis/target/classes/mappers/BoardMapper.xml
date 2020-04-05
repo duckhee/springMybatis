@@ -78,7 +78,7 @@ ENGINE = InnoDB;
 		</trim>
 	</sql>
 	<!-- Delete Board -->
-	<delete id="BoardDelete" parameterType="list">
+	<delete id="DeleteBoard" parameterType="list">
 		<![CDATA[
 			DELETE FROM board_table 
 			WHERE idx IN 

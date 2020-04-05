@@ -2,6 +2,8 @@ package kr.co.portfolio.board.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.portfolio.vo.BoardReplyVO;
@@ -10,6 +12,9 @@ import kr.co.portfolio.vo.Criteria;
 
 @Repository(value="BoardDao")
 public class BoardDaoImpl implements BoardDao{
+	
+	@Autowired
+	private SqlSession session;
 
 	@Override
 	public boolean create(BoardVO board) {
@@ -77,6 +82,12 @@ public class BoardDaoImpl implements BoardDao{
 	public boolean deleteReply(BoardReplyVO reply) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+
+	@Override
+	public int countReply(Criteria cri) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

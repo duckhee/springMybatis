@@ -31,7 +31,7 @@ public class AdminUserServiceTests {
 		log.info("User Service SignUp Tests");
 		/** Make User Sign Up */
 		UserVO user = new UserVO();
-		user.setEmail("admindcddccaaddscc5ddc@co.kr");
+		user.setEmail("cdcd@co.kr");
 		user.setPassword("admin1");
 		user.setName("admin1");
 		/** Service */

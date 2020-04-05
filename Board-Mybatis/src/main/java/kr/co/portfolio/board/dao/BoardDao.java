@@ -24,6 +24,8 @@ public interface BoardDao {
 	public boolean createReply(BoardReplyVO reply);
 	/** View Reply */
 	public BoardReplyVO viewReply(BoardReplyVO reply);
+	/** Count Reply */
+	public int countReply(Criteria cri);
 	/** List Reply */
 	public List<BoardReplyVO> listReply(BoardReplyVO reply);
 	/** Modify Reply */

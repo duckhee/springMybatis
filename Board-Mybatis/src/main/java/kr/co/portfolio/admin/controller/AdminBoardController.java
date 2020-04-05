@@ -40,13 +40,13 @@ public class AdminBoardController {
 	@PostMapping(value="/create")
 	public String CreateDo(@ModelAttribute("board")BoardVO board, RedirectAttributes flash) {
 		//TODO delete if use security
-		if(board.getWriter().length() == 0) {
+		if(board.getWriter() == null || board.getWriter() == "") {
 			/** Parameter Check writer */
 			flash.addAttribute("msg", "Login Frist.");
 			return "redirect:/admin/boards/create";
 		}
 		/** Board Title Check */
-		if(board.getTitle().length() == 0) {
+		if(board.getTitle() == null || board.getTitle() == "") {
 			flash.addAttribute("msg", "Title is not null.");
 			return "redirect:/admin/boards/create";
 		}

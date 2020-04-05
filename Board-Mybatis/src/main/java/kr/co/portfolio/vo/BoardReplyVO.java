@@ -1,6 +1,6 @@
 package kr.co.portfolio.vo;
 
-import java.sql.Date;
+
 import java.sql.Timestamp;
 
 import lombok.Getter;
@@ -47,6 +47,8 @@ public class BoardReplyVO {
 	private String retitle;
 	private String recotent;
 	private String replyer;
+	/** Board Idx */
+	private Long bno;
 	private Timestamp createdAt;
 	private Timestamp updatedAt;
 	

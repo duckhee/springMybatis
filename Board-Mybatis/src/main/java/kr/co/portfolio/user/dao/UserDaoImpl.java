@@ -21,10 +21,12 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public UserVO signup(UserVO user) {
 		// TODO Auto-generated method stub
-		log.info("Create User");
-		//return false;
-		//return session.insert("createUser", user);
-		return null;
+		session.insert("signupUser", user);
+		log.info("user idx:" + user.getIdx());
+		if(user.getIdx() == null) {
+			return null;
+		}
+		return user;
 	}
 
 	@Override
@@ -71,7 +73,7 @@ public class UserDaoImpl implements UserDao{
 	@Override
 	public UserVO login(String email) {
 		// TODO Auto-generated method stub
-		return null;
+		return session.selectOne("loginUser", email);
 	}
 
 	@Override
