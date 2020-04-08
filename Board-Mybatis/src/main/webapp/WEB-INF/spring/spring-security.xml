@@ -2,20 +2,39 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:security="http://www.springframework.org/schema/security"
-	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd">
 
+	<!-- Security Service -->
+	<bean id="AdminAuthService" class="kr.co.portfolio.security.CustomAdminUserDetailService"/>
+	<bean id="UserAuthService" class="kr.co.portfolio.security.CustomUserDetailService"/>
 	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	<!-- Admin Configuration -->
-	<!-- 
-	<security:http pattern="/admin/**" auto-config="true">
-	
+	 <!-- 
+	<security:http pattern="/admin/**" use-expressions="true" auto-config="true" authentication-manager-ref="adminAuth">
+		<security:intercept-url pattern="/admin/users/login" access="permitAll"/>
+		<security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+		<security:form-login login-page="/admin/users/login"/>
+		<security:logout logout-url="/admin/users/logout" invalidate-session="true" delete-cookies="remember-me,JESSION_ID,JSESSIONID" logout-success-url="/"/>
 	</security:http>
+	<security:authentication-manager alias="adminAuth">
+		<security:authentication-provider user-service-ref="AdminAuthService">
+			<security:password-encoder ref="bcryptPasswordEncoder"/>
+		</security:authentication-provider>
+	</security:authentication-manager>
 	 -->
 	<!-- User Configuration -->
 	<!-- 
-	<security:http pattern="/**" auto-config="true">
-	
+	<security:http pattern="/**" use-expressions="true" auto-config="true" authentication-manager-ref="UserAuthService">
+		<security:intercept-url pattern="/users/login" access="permitAll"/>
+		<security:intercept-url pattern="/**" access="hasRole('ROLE_USSER')"/>
+		<security:form-login login-page="/users/login"/>
+		<security:logout logout-url="/users/logout" invalidate-session="true" delete-cookies="remember-me,JESSION_ID,JSESSIONID" logout-success-url="/"/>
 	</security:http>
+	<security:authentication-manager alias="UserAuth">
+		<security:authentication-provider user-service-ref="UserAuthService">
+			<security:password-encoder ref="bcryptPasswordEncoder"/>
+		</security:authentication-provider>
+	</security:authentication-manager>
 	 -->
 </beans>

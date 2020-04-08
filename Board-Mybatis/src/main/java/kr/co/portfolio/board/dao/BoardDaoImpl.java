@@ -85,7 +85,7 @@ public class BoardDaoImpl implements BoardDao{
 	}
 
 	@Override
-	public boolean deleteReply(BoardReplyVO reply) {
+	public boolean deleteReply(Long rno) {
 		// TODO Auto-generated method stub
 		return false;
 	}

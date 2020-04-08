@@ -32,5 +32,5 @@ public interface BoardDao {
 	public boolean modifyReply(BoardReplyVO reply);
 	/** Delete Reply */
 	/** Only Delete Board Owner, Admin, Replyer */
-	public boolean deleteReply(BoardReplyVO reply);
+	public boolean deleteReply(Long rno);
 }

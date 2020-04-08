@@ -24,6 +24,11 @@ public class Criteria {
 		this(1, 10);
 	}
 	
+	/** Default amount = 1 */
+	public Criteria(int pageNum) {
+		this(pageNum, 10);
+	}
+	
 	/** Default amount, page  */
 	public Criteria(int pageNum, int amount) {
 		this.pageNum = pageNum;

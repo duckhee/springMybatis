@@ -6,7 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.co.portfolio.mapper.reply.ReplyMapper;
+import kr.co.portfolio.mapper.ReplyMapper;
 import kr.co.portfolio.vo.BoardReplyVO;
 import kr.co.portfolio.vo.BoardVO;
 import kr.co.portfolio.vo.Criteria;
@@ -90,9 +90,9 @@ public class BoardDaoAdminImpl implements BoardDao{
 	}
 
 	@Override
-	public boolean deleteReply(BoardReplyVO reply) {
+	public boolean deleteReply(Long rno) {
 		// TODO Auto-generated method stub
-		return mapper.deleteBoardReply(reply) == 1;
+		return mapper.deleteBoardReply(rno) == 1;
 	}
 
 }
