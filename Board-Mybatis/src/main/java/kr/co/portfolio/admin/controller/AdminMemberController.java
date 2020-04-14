@@ -1,13 +1,19 @@
 package kr.co.portfolio.admin.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import kr.co.portfolio.user.service.UserService;
+import kr.co.portfolio.vo.Criteria;
+import kr.co.portfolio.vo.UserVO;
 import lombok.extern.log4j.Log4j;
 
 @Log4j
@@ -29,12 +35,13 @@ public class AdminMemberController {
 	}
 	
 	@PostMapping(value="/registe")
-	public String RegisteDo() {
+	public String RegisteDo(UserVO user, RedirectAttributes flash) {
 		return "";
 	}
 	
 	@GetMapping(value="/list")
-	public String ListPage() {
+	public String ListPage(Criteria cri, Model model, RedirectAttributes flash) {
+		//List<UserVO> list;
 		return "";
 	}
 	

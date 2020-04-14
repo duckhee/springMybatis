@@ -25,5 +25,14 @@
 		]]>
 	</insert>
 	<!-- Update User Role -->
-	<update id="roleUpdate" parameterType="userRoleVO"></update>
+	<update id="roleUpdate" parameterType="userRoleVO">
+	
+	</update>
+	
+	<!-- Delete User Role -->
+	
+	<!-- View User Role -->
+	
+	<!-- List User Role -->
+	
 </mapper>

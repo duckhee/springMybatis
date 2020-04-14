@@ -43,7 +43,7 @@ public class UserDaoAdminImpl implements UserDao{
 	public boolean checkEmail(String email) {
 		// TODO Auto-generated method stub
 		log.info("Check User");
-		return (session.selectOne("checkUser", email) != null? true : false);
+		return (session.selectOne("checkUser", email) != null ? true : false);
 	}
 
 	@Override
