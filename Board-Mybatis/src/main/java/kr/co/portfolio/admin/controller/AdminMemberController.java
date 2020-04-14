@@ -20,7 +20,7 @@ public class AdminMemberController {
 	
 	@GetMapping(value= {"","/"})
 	public String MainPage() {
-		return "";
+		return "redirect:/admin/members/list";
 	}
 	
 	@GetMapping(value="/registe")

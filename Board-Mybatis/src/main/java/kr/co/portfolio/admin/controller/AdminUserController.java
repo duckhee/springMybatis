@@ -11,6 +11,8 @@ import kr.co.portfolio.user.service.UserService;
 import kr.co.portfolio.vo.UserVO;
 import lombok.extern.log4j.Log4j;
 
+import java.security.Principal;
+
 import javax.annotation.Resource;
 
 import org.springframework.dao.DuplicateKeyException;
@@ -79,7 +81,7 @@ public class AdminUserController {
 	}
 	
 	@GetMapping(value="/profile")
-	public String ProfilePage() {
+	public String ProfilePage(Principal principal, RedirectAttributes flash) {
 		log.info("Admin Profile");
 		return "admin/user/profilePage";
 	}

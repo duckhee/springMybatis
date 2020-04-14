@@ -19,7 +19,7 @@ public class BoardDaoImpl implements BoardDao{
 	@Override
 	public boolean create(BoardVO board) {
 		// TODO Auto-generated method stub
-		return false;
+		return session.insert("BoardInsert", board) == 1;
 	}
 
 	@Override

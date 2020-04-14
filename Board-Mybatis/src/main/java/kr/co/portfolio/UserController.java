@@ -16,6 +16,11 @@ public class UserController {
 	@Resource(name="UserService")
 	private UserService service;
 	
+	@GetMapping(value= {"","/"})
+	public String Index() {
+		return "redirect:/users/login";
+	}
+	
 	@GetMapping(value="/login")
 	public String LoginPage() {
 		return "";
